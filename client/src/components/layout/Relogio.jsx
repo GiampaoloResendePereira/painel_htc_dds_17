@@ -5,10 +5,10 @@ function Relogio() {
   const [hora, setHora] = useState('');
 
   //useEffct acionado apos carregamento da pagina
-  useEffect(()=>{
+  useEffet(()=>{
     atualizaHorario();
 
-    const Intervalo = setInterval(atualizaHorario, 1000);
+    const intervalo = setInterval(atualizaHorario, 1000);
 
     return () =>{
         clearInterval(intervalo);
