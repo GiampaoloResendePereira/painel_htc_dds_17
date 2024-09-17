@@ -50,7 +50,7 @@ function Saudacao() {
     }
 
     return (
-        <div classeName={styles.saudacao}>{saudacaoPeriodo}</div>
+        <div className={styles.saudacao}>{saudacaoPeriodo}</div>
     )
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function GestaoUsuario() {
+function GestaoUsuarios() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function GestaoUsuario() {
   )
 }
 
-export default GestaoUsuario
+export default GestaoUsuarios

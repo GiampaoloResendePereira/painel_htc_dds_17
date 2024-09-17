@@ -1,18 +1,13 @@
-import React from 'react'
-
 function AbreviaAmbiente(props) {
-    const ambiente = props.nomeAmbiente.split(' ');
+  const ambiente = props.nomeAmbiente.split('-');
 
-    if (ambiente.lenght < 2){
-        return ambiente
-    }
-    ambiente.splite()
-
+  if (ambiente.lenght < 2){
+      return ambiente
+  }
+  ambiente.splice(0,2);
   return (
-    <div>
-      
-    </div>
+      ambiente.join('-')
   )
 }
 
-export default AbreviaAmbiente
+export default AbreviaAmbiente;

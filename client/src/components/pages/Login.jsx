@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
 
 function Login() {
   return (
     <div>
-      <h1>Efetue Login</h1>
+    <h1 className='titulo'>Efetue Login</h1>
     </div>
   )
 }
