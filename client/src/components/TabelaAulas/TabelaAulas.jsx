@@ -1,65 +1,72 @@
 import { useEffect, useState } from "react";
+import styles from "./TabelaAulas.module.css";
 import AbreviaData from "./AbreviaData";
 import AbreviaInstrutor from "./AbreviaInstrutor";
 import AbreviaUC from "./AbreviaUC";
 import AbreviaAmbiente from "./AbreviaAmbiente";
+import Loading from "../layout/Loading";
 
 function TabelaAulas() {
-    const [aulas, setAulas] = useState([]);
-    useEffect(() => {
-        carregarAulas();
-    }, [])
+  const [aulas, setAulas] = useState([]);
+  const [removeLoading, setRemoveLoading] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      carregarAulas();
+    }, 3000);
+  }, []);
 
-    async function carregarAulas() {
-        try{
-            const resposta = await fetch('http://localhost:5000/', {
-                method: 'GET',
-                headers:{
-                    'Content-Type':'application/json'
-                }
+  async function carregarAulas() {
+    try {
+      const resposta = await fetch("http://localhost:5000/aulas", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (!resposta) {
+        throw new Error("Erro ao buscar aulas");
+      }
 
-            });
-            if(!resposta){
-                throw new Error('Erro ao buscar aulas');
-            }
-
-            const consulta = await resposta.json();
-            setAulas(consulta);
-            //console.log(consulta);
-        }catch (error){
-            console.log('Erro ao buscar aulas', error);
-
-        }
-        
+      const consulta = await resposta.json();
+      setAulas(consulta);
+      setRemoveLoading(true);
+      // console.log(consulta);
+    } catch (error) {
+      console.log("Erro ao buscar aulas", error);
     }
-    return (
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Inicio</th>
-                        <th>Fim</th>
-                        <th>Turma</th>
-                        <th>Intrutor</th>
-                        <th>Unidade Curricular</th>
-                        <th>Ambiente</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {aulas.map((aula)=>(
-                        <tr key = {aula.id}>
-                            <td>{<AbreviaData data={aula.data_hora_inicio} />}</td>                           
-                            <td>{<AbreviaData data={aula.data_hora_fim} />}</td>                           
-                            <td>{aula.turma}</td>                           
-                            <td>{<AbreviaInstrutor nomeCompleto={aula.instrutor}/>}</td>                           
-                            <td>{<AbreviaUC unidade_curricular={aula.unidade_curricular}/>}</td>                           
-                            <td>{<AbreviaAmbiente nomeAmbiente={aula.ambiente}/>}</td>                  
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    )
+  }
+  return (
+    <div className={styles.aulas}>
+      <table className={styles.tabelaAulas}>
+        <thead>
+          <tr>
+            <th>Inicio</th>
+            <th>Fim</th>
+            <th>Turma</th>
+            <th>Intrutor</th>
+            <th>Unidade Curricular</th>
+            <th>Ambiente</th>
+          </tr>
+        </thead>
+        <tbody>
+          {aulas.map((aula) => (
+            <tr key={aula.id}>
+              <td>{<AbreviaData data={aula.data_hora_inicio} />}</td>
+              <td>{<AbreviaData data={aula.data_hora_fim} />}</td>
+              <td>{aula.turma}</td>
+              <td>{<AbreviaInstrutor nomeCompleto={aula.instrutor} />}</td>
+              <td>
+                {<AbreviaUC unidade_curricular={aula.unidade_curricular} />}
+              </td>
+              <td>{<AbreviaAmbiente nomeAmbiente={aula.ambiente} />}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {!removeLoading && <Loading />}
+      {!removeLoading && aulas.length === 0 && <h1>Não há aulas disponiveis</h1>}
+    </div>
+  );
 }
 
-export default TabelaAulas
+export default TabelaAulas;

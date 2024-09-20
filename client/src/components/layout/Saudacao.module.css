@@ -1,4 +1,10 @@
-.saudacao{
-    display: inline-block;
-    width: 90%;
+.saudacao {
+  display: inline-block;
+  width: 90%;
+}
+
+@media (max-width: 768px) {
+  .saudacao {
+    width: 100%;
+  }
 }
