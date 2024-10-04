@@ -60,6 +60,7 @@ function TabelaAulas({tipo}) {
                 {<AbreviaUC unidade_curricular={aula.unidade_curricular} />}
               </td>
               <td>{<AbreviaAmbiente nomeAmbiente={aula.ambiente} />}</td>
+              {tipo === 'edit' && th><button></button></th>}
             </tr>
           ))}
         </tbody>
