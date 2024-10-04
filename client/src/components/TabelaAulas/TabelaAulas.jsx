@@ -6,7 +6,7 @@ import AbreviaUC from "./AbreviaUC";
 import AbreviaAmbiente from "./AbreviaAmbiente";
 import Loading from "../layout/Loading";
 
-function TabelaAulas() {
+function TabelaAulas({tipo}) {
   const [aulas, setAulas] = useState([]);
   const [removeLoading, setRemoveLoading] = useState(false);
   useEffect(() => {
@@ -36,16 +36,17 @@ function TabelaAulas() {
     }
   }
   return (
-    <div className={styles.aulas}>
+    <div className={`${styles.aulas} ${tipo==='edit'? styles.edit:''}` }>
       <table className={styles.tabelaAulas}>
         <thead>
           <tr>
             <th>Inicio</th>
-            <th>Fim</th>
+            <th className={styles.fim}>Fim</th>
             <th>Turma</th>
             <th>Intrutor</th>
             <th>Unidade Curricular</th>
             <th>Ambiente</th>
+            {tipo === 'edit' && <th>Ações</th>}
           </tr>
         </thead>
         <tbody>
