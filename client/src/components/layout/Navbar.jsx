@@ -1,5 +1,5 @@
-import styles from "./Navbar.module.css";
-import { Link } from "react-router-dom";
+import styles from './Navbar.module.css';
+import { Link } from 'react-router-dom';
 
 function Navbar() {
   return (
@@ -8,9 +8,9 @@ function Navbar() {
         className={`container navbar navbar-expand ${styles.barra_navegacao}`}
       >
         <div>
-          <span className="navbar-brand">Nome Usuario</span>
+          <span className="navbar-brand">Nome Usuário</span>
         </div>
-        <ul className="navbar-nav">
+        <ul className="navbar-nav mx-auto">
           <li className="nav-item">
             <Link className="nav-link" to="/">
               Inicio
@@ -22,8 +22,8 @@ function Navbar() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="/cadastro_aula">
-              Cadastro Aulas
+            <Link className="nav-link" to="/gestao_aulas">
+              Gestão Aula
             </Link>
           </li>
         </ul>

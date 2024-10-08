@@ -1,5 +1,5 @@
-import React from "react";
-import Navbar from "../layout/Navbar";
+import React from 'react';
+import Navbar from '../layout/Navbar';
 
 function Login() {
   return (
